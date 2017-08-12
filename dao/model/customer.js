@@ -19,6 +19,11 @@ var customerSchema = new Schema({
 	// 手机号码
 	phone: {
 		type: String
+	},
+	// 客户状态
+	status: {
+		type: String,
+		default: "0"
 	}
 })
 

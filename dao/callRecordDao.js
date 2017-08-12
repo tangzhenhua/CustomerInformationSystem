@@ -1,8 +1,10 @@
+const moment = require("moment")
 const database = require("./database.js")
 module.exports.getCallRecordByPage = async({
 	curPage,
 	eachPage,
-	customerId
+	customerId,
+	relationTime
 }) => {
 	const params = {
 		modelName: "callRecord",
@@ -15,11 +17,13 @@ module.exports.getCallRecordByPage = async({
 			path: "customerId",
 		}]
 	}
-
+	params.queryTerms = {}
 	if(customerId) {
-		params.queryTerms = {
-			customerId
-		}
+		params.queryTerms["customerId"] = customerId
 	}
+	if(relationTime) {
+		params.queryTerms["relationTime"] = moment(relationTime, "YYYYMMDD")
+	}
+	console.log(params)
 	return await database.query(params)
 }

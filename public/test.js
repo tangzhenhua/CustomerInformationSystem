@@ -4,10 +4,10 @@ var database = require("../dao/database.js")
 const moment = require("moment")
 var obj = xlsx.parse(__dirname+'/客户沟通情况表.xlsx');
 
-// xlsxToJsonCallRecords(obj[0].data)
+xlsxToJsonCallRecords(obj[0].data)
 // xlsxToJsonCustomer(obj[0].data)
 
-getCallRecords()
+// getCallRecords()
 // 获取客户沟通信息
 async function getCallRecords() {
 	const {data} = await database.query({
@@ -71,8 +71,5 @@ async function xlsxToJsonCallRecords(data) {
 	}
 }
 
-function formatterTime(time) {
-	console.log()
-}
 
 
