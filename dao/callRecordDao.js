@@ -4,18 +4,22 @@ module.exports.getCallRecordByPage = async({
 	eachPage,
 	customerId
 }) => {
-	return await database.query({
+	const params = {
 		modelName: "callRecord",
 		curPage,
 		eachPage,
-		queryTerms: {
-			customerId
-		},
 		sort: {
 			relationTime: -1
 		},
 		populate: [{
 			path: "customerId",
 		}]
-	})
+	}
+
+	if(customerId) {
+		params.queryTerms = {
+			customerId
+		}
+	}
+	return await database.query(params)
 }
