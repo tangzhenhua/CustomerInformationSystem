@@ -39,9 +39,15 @@ module.exports.updateCustomerStatus = async(queryTerms) => {
 	} catch (e) {
 		console.log(e)
 	}
-
-	
-	//
 }
+
+
+module.exports.insertCustomer = async(insertData) => {
+	return await database.create({
+		modelName: "customer",
+		insertData
+	})
+}
+
 
 

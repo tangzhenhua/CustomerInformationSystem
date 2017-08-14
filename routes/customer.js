@@ -14,4 +14,8 @@ router.post('/updateCustomerStatus',async function(ctx, next) {
 	ctx.body = await customerService.updateCustomerStatus(ctx.request.body)
 });
 
+router.post('/insertCustomer',async function(ctx, next) {
+	ctx.body = await customerService.insertCustomer(ctx.request.body)
+});
+
 module.exports = router;
