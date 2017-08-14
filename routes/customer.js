@@ -18,4 +18,12 @@ router.post('/insertCustomer',async function(ctx, next) {
 	ctx.body = await customerService.insertCustomer(ctx.request.body)
 });
 
+router.post('/updateCustomer',async function(ctx, next) {
+	ctx.body = await customerService.updateCustomer(ctx.request.body)
+});
+
+router.post('/delCustomerById',async function(ctx, next) {
+	ctx.body = await customerService.delCustomerById(ctx.request.body)
+});
+
 module.exports = router;

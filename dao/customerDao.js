@@ -1,7 +1,6 @@
 const database = require("./database.js")
 
 module.exports.getCustomerByPage = async(page) => {
-	// 查询参数
 	const {
 		curPage,
 		eachPage
@@ -15,7 +14,11 @@ module.exports.getCustomerByPage = async(page) => {
 	delete page.eachPage;
 	for(let key in page) {
 		obj.queryTerms = {}
-		obj.queryTerms[key] = eval(`/${page[key]}/`)
+		if(key !== "_id") {
+			obj.queryTerms[key] = eval(`/${page[key]}/`)
+		} else {
+			obj.queryTerms[key] = page[key]
+		}
 	}
 	return await database.query(obj)
 }
@@ -41,12 +44,33 @@ module.exports.updateCustomerStatus = async(queryTerms) => {
 	}
 }
 
-
 module.exports.insertCustomer = async(insertData) => {
 	return await database.create({
 		modelName: "customer",
 		insertData
 	})
+}
+
+module.exports.updateCustomer = async({
+	_id, name, capital_account, phone, status
+}) => {
+	return await database.update({
+		modelName: "customer",
+		queryTerms: {_id},
+		updateData: {name, capital_account, phone, status}
+	})
+}
+
+module.exports.delCustomerById = async({
+	_id
+}) => {
+	const data = await database.del({
+		modelName: "customer",
+		queryTerms: {
+			_id
+		}
+	})
+	return data.result
 }
 
 

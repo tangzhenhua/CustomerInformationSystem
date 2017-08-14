@@ -131,3 +131,17 @@ module.exports.update = async({
 			})
 	})
 }
+
+module.exports.del = async({
+	modelName,
+	queryTerms
+}) => {
+	return await new Promise((resolve, reject) => {
+		mongoose
+		.model(modelName)
+		.remove(queryTerms, (err, data) => {
+			if (err) console.log(err)
+				else resolve(data)
+		})
+	})
+}
