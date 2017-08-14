@@ -20,3 +20,28 @@ module.exports.getCustomerByPage = async(page) => {
 	return await database.query(obj)
 }
 
+module.exports.updateCustomerStatus = async(queryTerms) => {
+	try {
+		const {
+			data
+		} = await database.query({
+			modelName: "customer",
+			queryTerms,
+		})
+		const status = data[0].status
+		return await database.update({
+			modelName: "customer",
+			queryTerms,
+			updateData: {
+				status: status == 0 ? 1 : 0
+			}
+		})
+	} catch (e) {
+		console.log(e)
+	}
+
+	
+	//
+}
+
+

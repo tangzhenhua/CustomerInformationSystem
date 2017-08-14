@@ -10,4 +10,8 @@ router.get('/getCustomerByPage',async function(ctx, next) {
 	ctx.body = await customerService.getCustomerByPage(ctx.request.query)
 });
 
+router.post('/updateCustomerStatus',async function(ctx, next) {
+	ctx.body = await customerService.updateCustomerStatus(ctx.request.body)
+});
+
 module.exports = router;
