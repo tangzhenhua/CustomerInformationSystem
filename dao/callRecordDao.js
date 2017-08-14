@@ -29,6 +29,7 @@ module.exports.getCallRecordByPage = async({
 }
 
 module.exports.addCallRecord = async (callRecord) => {
+	callRecord.relationTime = moment(callRecord.relationTime, "YYYYMMDD")
 	return await database.create({
 		modelName: "callRecord",
 		insertData: callRecord
