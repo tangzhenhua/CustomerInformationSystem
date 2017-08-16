@@ -20,7 +20,7 @@ var customerSchema = new Schema({
 	phone: {
 		type: String
 	},
-	// 客户状态 0:表示普通客户 1:表示重点客户
+	// 客户状态 普通客户 0, 重点客户 1，持续跟踪 2，放弃客户 3 
 	status: {
 		type: String,
 		default: "0"

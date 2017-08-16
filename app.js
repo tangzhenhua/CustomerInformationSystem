@@ -15,6 +15,7 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const customer = require('./routes/customer');
 const callRecord = require('./routes/callRecord');
+const files = require('./routes/files');
 
 // error handler
 onerror(app);
@@ -50,6 +51,8 @@ app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(customer.routes(), customer.allowedMethods());
 app.use(callRecord.routes(), callRecord.allowedMethods());
+app.use(files.routes(), files.allowedMethods());
+
 
 var server = app.listen(3001, function() {
 	var host = server.address().address;

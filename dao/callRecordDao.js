@@ -1,5 +1,6 @@
 const moment = require("moment")
 const database = require("./database.js")
+
 module.exports.getCallRecordByPage = async({
 	curPage,
 	eachPage,
@@ -36,3 +37,38 @@ module.exports.addCallRecord = async (callRecord) => {
 	})
 }
 
+module.exports.removeCallRecord = async (callRecord) => {
+	return await database.del({
+		modelName: "callRecord",
+		queryTerms: callRecord
+	})
+}
+
+module.exports.getCallRecordById = async (callRecord) => {
+	return await database.query({
+		modelName: "callRecord",
+		queryTerms: callRecord,
+		populate: [{
+			path: "customerId",
+		}]
+	})
+}
+
+module.exports.updateCallRecordById = async ({
+	_id,
+  relationTime,
+  customerSituation,
+  communicationSituation
+}) => {
+	return await database.update({
+		modelName: "callRecord",
+		queryTerms: {
+			_id
+		},
+		updateData: {
+			relationTime,
+		  customerSituation,
+		  communicationSituation
+		}
+	})
+}

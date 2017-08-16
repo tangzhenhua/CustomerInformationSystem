@@ -74,4 +74,8 @@ module.exports.delCustomerById = async({
 }
 
 
+module.exports.delAll = async() => {
+	
+}
+
 

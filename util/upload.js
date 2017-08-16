@@ -45,12 +45,10 @@ function uploadFile(ctx, options) {
 
   // 获取类型
   let fileType = options.fileType || 'common'
-  let filePath = path.join(options.path, fileType)
-  console.log(filePath)
+  let filePath = path.join(options.path, "")
   let moviePath = filePath.substring(filePath.indexOf(`/`))
-  console.log(moviePath)
   let mkdirResult = mkdirsSync(filePath)
-
+  console.log(moviePath)
   return new Promise((resolve, reject) => {
     console.log('文件上传中...')
     let result = {
@@ -79,6 +77,7 @@ function uploadFile(ctx, options) {
         result.message = '文件上传成功'
         result.data = data;
         result.data.url = `${moviePath}/${fileName}`.replace(/\\/g, "/")
+        result.data.fileName = fileName
         console.log('文件上传成功！')
         resolve(result)
       })
